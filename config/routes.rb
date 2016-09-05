@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
   devise_for :views
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
+
   resources :contacts
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'pages#index'
