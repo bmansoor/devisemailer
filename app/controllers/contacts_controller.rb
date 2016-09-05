@@ -13,10 +13,10 @@ class ContactsController < ApplicationController
       email = params[:contact][:email]
       message = params[:contact][:message]
       ContactMailer.contact_email(name, email, message).deliver
-      flash[:success] = "Thanks for the message, we will be in touch soon."
+      flash[:success] = "Thank you for your message."
     else
-      redirect_to root_path
-      flash[:danger] = "Opps, there was a problem! Please fill out all the fields."
+      redirect_to pages_contact_path
+      flash[:danger] = "Please fill out all the fields."
     end
   end
   
@@ -25,6 +25,6 @@ class ContactsController < ApplicationController
   private
   
   def contact_params
-    params.require(: contact).permit(: name,: email,: message)
+    params.require( :contact).permit( :name, :email, :message)
   end
 end
